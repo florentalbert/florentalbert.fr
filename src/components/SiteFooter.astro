@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t-2 border-ink bg-paper">
+	<div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+		<div class="flex flex-col gap-1">
+			<p>© {year} Florent Albert</p>
+			<p>
+				Contenu sous licence{' '}
+				<a
+					href="https://creativecommons.org/licenses/by/4.0/deed.fr"
+					rel="license"
+					class="underline underline-offset-4"
+				>
+					CC BY 4.0
+				</a>
+			</p>
+		</div>
+		<nav aria-label="Liens de pied de page">
+			<ul class="flex gap-6">
+				<li>
+					<a href="/" class="underline underline-offset-4">
+						Accueil
+					</a>
+				</li>
+				<li>
+					<a href="/#contact" class="underline underline-offset-4">
+						Contact
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</footer>
