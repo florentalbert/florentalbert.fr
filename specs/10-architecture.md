@@ -176,6 +176,8 @@ fix(budget): 🐛 keep violations in file order
 - `!` marks a breaking change, detailed in a `BREAKING CHANGE:` footer.
 - Branches: `<type>/<short-description>` (e.g. `feat/project-pages`). Changes land on `main`
   through a pull request titled like a commit header.
+- Commits written with Claude Code end with the trailer
+  `Co-Authored-By: Claude Code <noreply@anthropic.com>`; the author stays the human committer.
 - Enforced by `.githooks/commit-msg` (format and length); the gitmoji choice is reviewed.
 
 | Type       | Gitmoji | Use                                            |

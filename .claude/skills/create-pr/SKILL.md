@@ -36,6 +36,8 @@ git log --format=%s origin/main..HEAD
 Every header must match `<type>[(<scope>)][!]: <gitmoji> <subject>`, at most 72 characters, with the
 gitmoji matching the type (table in ADR-022). The `commit-msg` hook enforces the format; check the
 gitmoji choice yourself. If a header is wrong, propose a fix and ask before rewriting history.
+Commits made with Claude Code must end with `Co-Authored-By: Claude Code <noreply@anthropic.com>`
+(ADR-022); the author stays the user.
 
 ## 3. Run verify
 
