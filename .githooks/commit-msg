@@ -1,0 +1,26 @@
+#!/bin/sh
+# Commit message convention (specs/10-architecture.md, ADR-022):
+#   <type>[(<scope>)][!]: <gitmoji> <subject>
+# e.g. "feat(nojs): ✨ reject srcdoc attributes". Git-generated merge, revert, fixup! and squash!
+# messages are accepted as is.
+header=$(head -n 1 "$1")
+
+case "$header" in
+Merge\ * | Revert\ * | fixup!\ * | squash!\ * | amend!\ *) exit 0 ;;
+esac
+
+types='feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert'
+# The gitmoji is any non-ASCII character sequence (emoji) followed by a space.
+pattern="^($types)(\([a-z0-9-]+\))?!?: [^ -~]+ [^ ].*$"
+
+if ! printf '%s\n' "$header" | LC_ALL=C grep -Eq "$pattern"; then
+	echo "commit-msg: invalid header: \"$header\"" >&2
+	echo "commit-msg: expected \"<type>[(<scope>)][!]: <gitmoji> <subject>\"," >&2
+	echo "commit-msg: e.g. \"feat(nojs): ✨ reject srcdoc attributes\" (types: ${types})" >&2
+	exit 1
+fi
+
+if [ "$(printf '%s' "$header" | wc -m)" -gt 72 ]; then
+	echo "commit-msg: header longer than 72 characters" >&2
+	exit 1
+fi

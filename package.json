@@ -1,17 +1,51 @@
 {
-  "name": "florentalbert.fr",
-  "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.23.4"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^7.4.13"
-  }
+	"name": "florentalbert.fr",
+	"type": "module",
+	"version": "0.0.1",
+	"license": "MIT",
+	"engines": {
+		"node": ">=22.23.4"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint": "eslint . --max-warnings 0",
+		"check": "astro check --minimumFailingSeverity hint",
+		"check:nojs": "node scripts/check-nojs.ts",
+		"check:budget": "node scripts/check-budget.ts",
+		"check:html": "html-validate \"dist/**/*.html\"",
+		"test:scripts": "node --test 'scripts/tests/*.test.ts'",
+		"test:e2e": "playwright test",
+		"test:e2e:update": "playwright test --update-snapshots",
+		"verify": "npm run format:check && npm run lint && npm run check && npm run test:scripts && npm run build && npm run check:nojs && npm run check:budget && npm run check:html && npm run test:e2e",
+		"audit": "npm run build && node scripts/audit.ts",
+		"prepare": "git rev-parse --git-dir >/dev/null 2>&1 && git config core.hooksPath .githooks || true"
+	},
+	"dependencies": {
+		"@astrojs/sitemap": "^3.7.6",
+		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.5",
+		"astro": "^7.4.13",
+		"tailwindcss": "^4.3.5"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.12",
+		"@axe-core/playwright": "^4.14.0",
+		"@eslint/js": "^9.39.5",
+		"@playwright/test": "^1.65.1",
+		"@types/node": "^22.20.5",
+		"eslint": "^9.39.5",
+		"eslint-plugin-astro": "^1.7.0",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"html-validate": "^11.21.1",
+		"lighthouse": "^13.6.0",
+		"prettier": "^3.10.1",
+		"prettier-plugin-astro": "^1.1.2",
+		"typescript": "~6.0.3",
+		"typescript-eslint": "^8.73.0"
+	}
 }

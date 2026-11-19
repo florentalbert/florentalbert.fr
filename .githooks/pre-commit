@@ -1,0 +1,7 @@
+#!/bin/sh
+# Light pre-commit hook (specs/10-architecture.md, ADR-013). Full validation: npm run verify.
+# Enabled by `npm install` (prepare script: git config core.hooksPath .githooks).
+set -e
+npm run -s format:check
+npm run -s lint
+npm run -s check

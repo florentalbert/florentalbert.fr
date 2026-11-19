@@ -1,0 +1,9 @@
+dist/
+.astro/
+node_modules/
+package-lock.json
+test-results/
+playwright-report/
+.lighthouse/
+tests/e2e/__snapshots__/
+.claude/
