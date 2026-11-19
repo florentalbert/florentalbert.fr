@@ -1,0 +1,57 @@
+/* Scan src/ only: specs and docs mention class names that must not leak into the CSS. */
+@import 'tailwindcss' source('../');
+@plugin '@tailwindcss/typography';
+
+/* Design tokens, see specs/30-design.md. */
+/* Monochrome only: shades of black and white, never pure #000 or #fff. */
+@theme {
+	--color-paper: #fafafa;
+	--color-surface: #e5e5e5;
+	--color-ink: #141414;
+	--color-muted: #454545;
+	--shadow-brutal: 4px 4px 0 0 var(--color-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-paper: #141414;
+		--color-surface: #292929;
+		--color-ink: #f5f5f5;
+		--color-muted: #c4c4c4;
+	}
+}
+
+@layer base {
+	:root {
+		color-scheme: light dark;
+	}
+
+	body {
+		@apply bg-paper text-ink;
+	}
+
+	:focus-visible {
+		@apply outline-2 outline-offset-2 outline-ink;
+	}
+}
+
+/* Map typography plugin colors to tokens so prose meets 7:1 in both schemes. */
+@utility prose-tokens {
+	--tw-prose-body: var(--color-ink);
+	--tw-prose-headings: var(--color-ink);
+	--tw-prose-lead: var(--color-muted);
+	--tw-prose-links: var(--color-ink);
+	--tw-prose-bold: var(--color-ink);
+	--tw-prose-counters: var(--color-muted);
+	--tw-prose-bullets: var(--color-ink);
+	--tw-prose-hr: var(--color-ink);
+	--tw-prose-quotes: var(--color-ink);
+	--tw-prose-quote-borders: var(--color-ink);
+	--tw-prose-captions: var(--color-muted);
+	--tw-prose-kbd: var(--color-ink);
+	--tw-prose-code: var(--color-ink);
+	--tw-prose-pre-code: var(--color-paper);
+	--tw-prose-pre-bg: var(--color-ink);
+	--tw-prose-th-borders: var(--color-ink);
+	--tw-prose-td-borders: var(--color-muted);
+}

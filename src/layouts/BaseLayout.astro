@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+	/** Page title, without the site name. Final <title> must stay ≤ 60 characters. */
+	title: string;
+	/** Meta description, 50–160 characters. */
+	description: string;
+	/** Absolute or root-relative Open Graph image path. */
+	image?: string;
+	/** Exclude the page from search engines (404, drafts). */
+	noindex?: boolean;
+}
+
+const { title, description, image = '/og-default.png', noindex = false } = Astro.props;
+
+const siteName = 'Florent Albert';
+const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		{!noindex && <meta property="og:url" content={canonical} />}
+		<meta property="og:image" content={imageUrl} />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body class="flex min-h-screen flex-col font-sans antialiased">
+		<a
+			href="#contenu"
+			class="sr-only bg-ink text-paper focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:border-2 focus:border-paper focus:px-4 focus:py-2 focus:font-bold"
+		>
+			Aller au contenu
+		</a>
+		<SiteHeader />
+		<main id="contenu" class="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
+			<slot />
+		</main>
+		<SiteFooter />
+	</body>
+</html>

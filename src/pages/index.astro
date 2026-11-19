@@ -1,16 +1,29 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+	title="Florent Albert"
+	description="Portfolio de Florent Albert : présentation, projets sélectionnés et moyens de contact."
+>
+	<section class="border-2 border-ink p-6 shadow-brutal sm:p-10">
+		<h1 class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">Florent Albert</h1>
+		<p class="mt-4 max-w-prose text-lg leading-relaxed text-muted">
+			Ce site est en construction. Les projets et le contenu arrivent bientôt.
+		</p>
+	</section>
+
+	<section id="projets" aria-labelledby="projets-titre" class="mt-16">
+		<h2 id="projets-titre" class="text-3xl font-black">
+			Projets
+		</h2>
+		<p class="mt-4 max-w-prose leading-relaxed">Les premiers projets seront publiés ici.</p>
+	</section>
+
+	<section id="contact" aria-labelledby="contact-titre" class="mt-16">
+		<h2 id="contact-titre" class="text-3xl font-black">
+			Contact
+		</h2>
+		<p class="mt-4 max-w-prose leading-relaxed">Les informations de contact seront ajoutées ici.</p>
+	</section>
+</BaseLayout>
