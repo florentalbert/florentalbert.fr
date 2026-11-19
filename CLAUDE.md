@@ -32,6 +32,7 @@ Read the relevant file in `specs/` before changing anything; do not duplicate it
 ## Git workflow
 
 - Work on a branch `<type>/<short-description>`, merge into `main` through a pull request.
+  Open PRs with the `create-pr` skill (`.claude/skills/create-pr/`).
 - Commit headers: `<type>[(<scope>)][!]: <gitmoji> <subject>`, e.g. `feat(nojs): ✨ reject srcdoc`.
   Gitmoji per type and rules in `specs/10-architecture.md` (ADR-022); the `commit-msg` hook rejects
   other formats.
